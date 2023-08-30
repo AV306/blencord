@@ -1,0 +1,2 @@
+wget https://services.gradle.org/distributions/gradle-8.3-bin.zip
+wget https://cdn.azul.com/zulu/bin/zulu17.44.15-ca-jdk17.0.8-linux_x64.zip
