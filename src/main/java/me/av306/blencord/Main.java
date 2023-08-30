@@ -1,6 +1,5 @@
 package me.av306.blencord;
 
-import java.io.Console;
 import java.util.Scanner;
 
 import org.javacord.api.*;
@@ -36,12 +35,16 @@ public class Main
 				.join(); // Block until login completed
 		
 		System.out.println( "Connected to Discord!" );
+		System.out.println( "Entering command loop." );
 
 		// Main event loop
 		String line;
-		while ( (line = scanner.nextLine()) != ":q" )
+		boolean shouldQuit = false;
+		while ( !shouldQuit )
 		{
-				
+			line = scanner.nextLine();
+			System.out.println( "> " + line );
+			if ( line.equals( ":q" ) ) break;
 		}
 
 		// Quit
