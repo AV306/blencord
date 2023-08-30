@@ -1,0 +1,9 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+# Ignore files
+gradle-8.3/
+zulu17.44.15-ca-jdk17.0.8-linux_x64/
