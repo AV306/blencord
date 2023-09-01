@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
 	implementation "org.javacord:javacord:${project.javacord_version}"
+	implementation "org.fusesource.jansi:jansi:${project.jansi_version}"
 }
 
 jar {
