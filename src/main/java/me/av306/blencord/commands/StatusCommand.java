@@ -11,12 +11,18 @@ public class StatusCommand extends Command
 	}
 
 	@Override
-	public boolean execute( String[] args )
+	public void execute(String[] args )
 	{
-		UserStatus status = Blencord.INSTANCE.api.getStatus();
+		try
+		{
+			UserStatus status = Blencord.INSTANCE.api.getStatus();
+			System.out.println( status.getStatusString() );
+		}
+		catch ( NullPointerException npe )
+		{
+			Blencord.INSTANCE.sendErrorMessage( "Not logged in!" );
+		}
 
-		System.out.println( status.getStatusString() );
 
-		return true;
 	}
 }
