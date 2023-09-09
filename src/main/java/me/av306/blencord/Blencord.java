@@ -34,6 +34,7 @@ public enum Blencord
 		new ListCommand();
 		new JoinCommand();
 		new SendCommand();
+		new LeaveCommand();
 	}
 
 	public void run() throws IOException

@@ -4,6 +4,7 @@ import me.av306.blencord.Blencord;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.intent.Intent;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -36,7 +37,7 @@ public class LoginCommand extends Command
                     }
                 }
 
-                /*case "acc", "account" ->
+                case "acc", "account" ->
                 {
                     try
                     {
@@ -46,7 +47,7 @@ public class LoginCommand extends Command
                     {
                         Blencord.INSTANCE.sendErrorMessage( "Expected 2 arguments (email, password), received ", args.length - 1 );
                     }
-                }*/
+                }
 
                 default -> Blencord.INSTANCE.sendErrorMessage( "Unknown login method: ", args[1] );
             }

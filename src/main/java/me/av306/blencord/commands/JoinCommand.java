@@ -11,7 +11,7 @@ public class JoinCommand extends Command
 {
 	public JoinCommand()
 	{
-		super( "join", "j" );
+		super( "join", "jn", "j" );
 	}
 
 	@Override
@@ -23,23 +23,26 @@ public class JoinCommand extends Command
 			return;
 		}
 
-		String[] ids = args[1].split( "/" );
-
-		for ( String idString : ids )
+		try
 		{
-			try
+			String[] ids = args[1].split( "/" );
+
+			for ( String idString : ids )
 			{
-				long id = Long.parseLong( idString );
-				this.joinEntity( id );
+				try
+				{
+					long id = Long.parseLong( idString );
+					this.joinEntity( id );
+				}
+				catch ( NumberFormatException nfe )
+				{
+					Blencord.INSTANCE.sendErrorMessage( "Expected number, received \"", args[1], '\"' );
+				}
 			}
-			catch ( ArrayIndexOutOfBoundsException oobe )
-			{
-				Blencord.INSTANCE.sendErrorMessage( "Expected 1 or more arguments (ids), received ", args.length - 1 );
-			}
-			catch ( NumberFormatException nfe )
-			{
-				Blencord.INSTANCE.sendErrorMessage( "Expected number, received \"", args[1], '\"' );
-			}
+		}
+		catch ( ArrayIndexOutOfBoundsException oobe )
+		{
+			Blencord.INSTANCE.sendErrorMessage( "Expected 1 or more arguments (ids), received ", args.length - 1 );
 		}
 	}
 
@@ -51,7 +54,7 @@ public class JoinCommand extends Command
 			try
 			{
 				Blencord.INSTANCE.pos = Blencord.INSTANCE.api.getServerById( id ).orElseThrow();
-				Blencord.INSTANCE.sendInfoMessage( "Joined server: ", ((Server) Blencord.INSTANCE.pos).getName() );
+				//Blencord.INSTANCE.sendInfoMessage( "Joined server: ", ((Server) Blencord.INSTANCE.pos).getName() );
 			}
 			catch ( NoSuchElementException noSuchElementException )
 			{
@@ -64,7 +67,7 @@ public class JoinCommand extends Command
 			try
 			{
 				Blencord.INSTANCE.pos = currentServer.getChannelById( id ).orElseThrow();
-				Blencord.INSTANCE.sendInfoMessage( "Joined channel: ", id );
+				//Blencord.INSTANCE.sendInfoMessage( "Joined channel: ", id );
 			}
 			catch ( NoSuchElementException noSuchElementException )
 			{

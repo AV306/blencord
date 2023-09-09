@@ -26,7 +26,7 @@ public class ListCommand extends Command
 		{
 			// In a server, list channels
 			Blencord.INSTANCE.sendInfoMessage( "Channels in server ", server.getName(), ':' );
-			server.getChannels().forEach( Blencord.INSTANCE::sendInfoMessage );
+			server.getTextChannels().forEach( Blencord.INSTANCE::sendInfoMessage );
 		}
 		else if ( Blencord.INSTANCE.pos instanceof ServerTextChannel serverTextChannel )
 		{

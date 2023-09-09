@@ -21,7 +21,7 @@ dependencies {
 
 jar {
 	manifest {
-		attributes( "Main-Class": "me.av306.blencord.Main" )
+		attributes( "Main-Class": "me.av306.blencord.Blencord" )
 	}
 }
 
@@ -29,4 +29,4 @@ run {
  standardInput = System.in
 }
 
-application.mainClass = "me.av306.blencord.Main"
+application.mainClass = "me.av306.blencord.Blencord"
