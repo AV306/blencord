@@ -49,7 +49,7 @@ public class LoginCommand extends Command
                     }
                 }
 
-                default -> Blencord.INSTANCE.sendErrorMessage( "Unknown login method: ", args[1] );
+                default -> Blencord.INSTANCE.sendErrorMessage( "Unknown login method: ", args[1], " (Expected \"token\" or \"account\")" );
             }
         }
         catch ( ArrayIndexOutOfBoundsException oobe )
@@ -58,6 +58,7 @@ public class LoginCommand extends Command
         }
     }
 
+	// FIXME: needs HTTPS POST
     private String getTokenFromAccountLogin( String email, String password )
     {
         String requestBody = String.format(
@@ -81,12 +82,18 @@ public class LoginCommand extends Command
         catch ( Exception e )
         {
             Blencord.INSTANCE.sendErrorMessage( "An unknown exception occurred: ", e.getMessage() );
-            return "error";
+            return "token_error";
         }
     }
 
     private void loginWithToken( String token )
     {
+		if ( token.equals( "token_error" )
+		{
+			Blencord.INSTANCE.sendErrorMessage( "Not logging in due to error fetching token" );
+			return;	
+		}
+		
         try
         {
             Blencord.INSTANCE.api = new DiscordApiBuilder()
