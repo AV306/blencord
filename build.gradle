@@ -9,6 +9,9 @@ plugins {
 	id 'application'
 }
 
+sourceCompatability = JavaVersion.VERSION_21
+targetCompatability = JavaVersion.VERSION_17 // Most machinese I use have Java 17
+
 repositories {
 	mavenCentral()
 }
@@ -30,3 +33,7 @@ run {
 }
 
 application.mainClass = "me.av306.blencord.Blencord"
+
+/*tasks.withType( JavaCompile ) {
+    options.release = 21
+}*/
