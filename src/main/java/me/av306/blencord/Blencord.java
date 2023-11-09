@@ -48,25 +48,28 @@ public enum Blencord
 		String[] command;
 		do
 		{
+			// Prompt
 			System.out.print(
 					ansi()
 							.a( '(' )
 							.fgBrightGreen()
-							.a( this.getCurrentAccountNameOrDefault( "Not logged in" ) )
+							.a( this.getCurrentAccountNameOrDefault( "Not logged in" ) ) // Account name if present
 							.reset()
 							.a( ") " )
 							.fgBrightYellow()
-							.a( this.getPath() )
+							.a( this.getPath() ) // Current location within Discord
 							.reset()
 							.a( " $ " )
 			);
 
+			// Read the rest of the line as input
 			line = reader.readLine();
 
 			// oh god this is xenon CP all over again
+			// Split the command into words
 			command = line.split( " " );
 
-			// Find command
+			// Find command target
 			Command cmd = this.commands.get( command[0] );
 
 			if ( cmd == null )
@@ -86,6 +89,7 @@ public enum Blencord
 
 	public String getPath()
 	{
+		// Initialise an SB with the default value for a path
 		StringBuilder builder = new StringBuilder( "/" );
 		if ( this.api == null ) return ""; // Not logged in, no point
 
