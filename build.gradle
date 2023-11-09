@@ -10,7 +10,7 @@ plugins {
 }
 
 sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_17 // Most machinese I use have Java 17
+targetCompatibility = JavaVersion.VERSION_21 // aiyoh
 
 repositories {
 	mavenCentral()
