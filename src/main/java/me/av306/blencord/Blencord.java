@@ -94,7 +94,7 @@ public enum Blencord
 		if ( this.api == null ) return ""; // Not logged in, no point
 
 		// Can't wait for switch patterns :(
-		if ( this.pos == null )
+		/*if ( this.pos == null )
 		{
 			// Not in a server
 		}
@@ -113,6 +113,19 @@ public enum Blencord
 		else
 		{
 			builder.append( "unknown/" );
+		}*/
+		
+		// Switch patterns are here!!!
+		switch ( this.pos )
+		{
+
+			case Server server -> builder.append( server.getName() ).append( '/' );
+			case ServerTextChannel serverTextChannel -> builder.append( serverTextChannel.getServer().getName() )
+					.append( '/' ).append( serverTextChannel.getName().append( '/' );
+
+			case null -> {}
+				
+			default -> builder.append( "unknown/" );
 		}
 
 		return builder.toString();
