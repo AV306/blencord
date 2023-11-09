@@ -33,7 +33,7 @@ public class LoginCommand extends Command
                     }
                     catch ( ArrayIndexOutOfBoundsException oobe )
                     {
-                        Blencord.INSTANCE.sendErrorMessage( "Expected 1 arguments (token), received ", args.length - 1 );
+                        Blencord.INSTANCE.sendErrorMessage( `Expected 1 arguments (token), received ${args.length - 1}` );
                     }
                 }
 
@@ -45,26 +45,29 @@ public class LoginCommand extends Command
                     }
                     catch ( ArrayIndexOutOfBoundsException oobe )
                     {
-                        Blencord.INSTANCE.sendErrorMessage( "Expected 2 arguments (email, password), received ", args.length - 1 );
+                        Blencord.INSTANCE.sendErrorMessage( `Expected 2 arguments (email, password), received ${args.length - 1}` );
                     }
                 }
 
-                default -> Blencord.INSTANCE.sendErrorMessage( "Unknown login method: ", args[1], " (Expected \"token\" or \"account\")" );
+                default -> Blencord.INSTANCE.sendErrorMessage( `Unknown login method: ${args[1]} (Expected "token" or "account")` );
             }
         }
         catch ( ArrayIndexOutOfBoundsException oobe )
         {
-            Blencord.INSTANCE.sendErrorMessage( "Expected at least 1 argument (login method, args), received ", args.length - 1 );
+            Blencord.INSTANCE.sendErrorMessage( `Expected at least 1 argument (login method, args), received ${args.length - 1}` );
         }
     }
 
 	// FIXME: needs HTTPS POST
     private String getTokenFromAccountLogin( String email, String password )
     {
-        String requestBody = String.format(
+        /*String requestBody = String.format(
                 "{\"login\":\"%s\",\"password\":\"%s\",\"undelete\":false}",
                 email, password
-        );
+        );*/
+
+		// Java 21 template string
+	    String requestBody = `{"login": ${email}, "password": ${password}}`;
 
         Blencord.INSTANCE.sendInfoMessage( "POSTing data: ", requestBody );
 
@@ -81,16 +84,16 @@ public class LoginCommand extends Command
         }
         catch ( Exception e )
         {
-            Blencord.INSTANCE.sendErrorMessage( "An unknown exception occurred: ", e.getMessage() );
+            Blencord.INSTANCE.sendErrorMessage( `An exception occurred while fetching token: ${e.getMessage()}` );
             return "token_error";
         }
     }
 
     private void loginWithToken( String token )
     {
-		if ( token.equals( "token_error" )
+		if ( token.equals( "token_error" ) )
 		{
-			Blencord.INSTANCE.sendErrorMessage( "Not logging in due to error fetching token" );
+			Blencord.INSTANCE.sendErrorMessage( "Error fetching token, can't login" );
 			return;	
 		}
 		
@@ -106,7 +109,7 @@ public class LoginCommand extends Command
         }
         catch ( Exception e )
         {
-            Blencord.INSTANCE.sendErrorMessage( "An unknown exception occurred: ", e.getMessage() );
+            Blencord.INSTANCE.sendErrorMessage( `An unknown exception occurred: ${e.getMessage()}` );
             e.printStackTrace();
         }
     }
