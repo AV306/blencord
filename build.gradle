@@ -9,8 +9,8 @@ plugins {
 	id 'application'
 }
 
-sourceCompatability = JavaVersion.VERSION_21
-targetCompatability = JavaVersion.VERSION_17 // Most machinese I use have Java 17
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_17 // Most machinese I use have Java 17
 
 repositories {
 	mavenCentral()
