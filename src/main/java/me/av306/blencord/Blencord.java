@@ -121,7 +121,7 @@ public enum Blencord
 
 			case Server server -> builder.append( server.getName() ).append( '/' );
 			case ServerTextChannel serverTextChannel -> builder.append( serverTextChannel.getServer().getName() )
-					.append( '/' ).append( serverTextChannel.getName().append( '/' );
+					.append( '/' ).append( serverTextChannel.getName() ).append( '/' );
 
 			case null -> {}
 				

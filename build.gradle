@@ -34,6 +34,12 @@ run {
 
 application.mainClass = "me.av306.blencord.Blencord"
 
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of( 21 )
+	}
+}
+
 /*tasks.withType( JavaCompile ) {
     options.release = 21
 }*/
